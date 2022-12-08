@@ -2,7 +2,8 @@ import torch
 from matplotlib import pyplot as plt
 import numpy as np
 import cv2
-model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5/runs/train/exp2/weights/last.pt', force_reload=True)
+model = torch.hub.load(r'yolov5', 'custom', path='yolov5/runs/train/exp2/weights/last.pt', source='local')
+#model = torch.hub.load('ultralytics/yolov5', 'custom', path='yolov5/runs/train/exp2/weights/last.pt', force_reload=True)
 import random
 import uuid   # Unique identifier
 import os
@@ -18,7 +19,7 @@ while cap.isOpened():
     # Make detections 
     results = model(frame)
     
-    cv2.imshow('YOLO', np.squeeze(results.render()))
+    cv2.imshow('/YOLO', np.squeeze(results.render()))
     imgname = os.path.join(IMAGES_PATH,'coba.jpg')
     if cv2.waitKey(10) & 0xFF == ord('q'):
         cv2.imwrite(imgname, frame)
